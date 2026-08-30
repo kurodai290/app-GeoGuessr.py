@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoGuessr Clone</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+</head>
+<body>
+
+    <h1>GeoGuessr Clone</h1>
+
+    <div id="game">
+
+        <iframe
+            id="streetview"
+            src="https://www.google.com/maps/embed?pb=!4v1700000000000"
+            allowfullscreen>
+        </iframe>
+
+        <div id="map"></div>
+
+    </div>
+
+    <button id="guessBtn">予想する</button>
+
+    <p id="result"></p>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
