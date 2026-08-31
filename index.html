@@ -1,39 +1,25 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>チャリゲッサー</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
 <div class="container">
 
     <h1>🚴 チャリゲッサー</h1>
 
-    <p class="subtitle">
-        静岡を駆け巡れ！
-    </p>
+    <input
+      id="playerName"
+      placeholder="名前"
+    >
 
-    <div class="card">
+    <button id="createBtn">
+      ルーム作成
+    </button>
 
-        <button id="createBtn" class="mainBtn">
-            ルーム作成
-        </button>
+    <button id="joinBtn">
+      ルーム参加
+    </button>
 
-        <button id="joinBtn" class="mainBtn">
-            ルーム参加
-        </button>
+    <div id="roomInfo"></div>
 
-    </div>
-
-    <p class="version">
-        Version 0.1
-    </p>
+    <ul id="playerList"></ul>
 
 </div>
 
+<script src="/socket.io/socket.io.js"></script>
 <script src="app.js"></script>
-</body>
-</html>
