@@ -1,36 +1,64 @@
+const socket = io();
+
 const createBtn =
 document.getElementById("createBtn");
 
 const joinBtn =
 document.getElementById("joinBtn");
 
-createBtn.addEventListener("click", () => {
+const roomInfo =
+document.getElementById("roomInfo");
 
-    const roomCode =
-    Math.floor(
-        1000 + Math.random() * 9000
-    );
+const playerList =
+document.getElementById("playerList");
 
-    alert(
-        "ルームコード：" + roomCode
-    );
+createBtn.onclick = () => {
 
+  const playerName =
+    document.getElementById("playerName").value;
+
+  socket.emit(
+    "createRoom",
+    playerName || "名無し"
+  );
+};
+
+joinBtn.onclick = () => {
+
+  const roomCode =
+    prompt("4桁ルームコード");
+
+  const playerName =
+    document.getElementById("playerName").value;
+
+  socket.emit("joinRoom", {
+    roomCode,
+    playerName: playerName || "名無し"
+  });
+};
+
+socket.on("roomCreated", roomCode => {
+
+  roomInfo.innerHTML =
+    `ルームコード: ${roomCode}`;
 });
 
-joinBtn.addEventListener("click", () => {
+socket.on("playerList", players => {
 
-    const roomCode =
-    prompt(
-        "ルームコードを入力"
-    );
+  playerList.innerHTML = "";
 
-    if(roomCode){
+  players.forEach(player => {
 
-        alert(
-            roomCode +
-            " に参加します"
-        );
+    const li =
+      document.createElement("li");
 
-    }
+    li.textContent = player.name;
 
+    playerList.appendChild(li);
+  });
 });
+
+socket.on(
+  "errorMessage",
+  message => alert(message)
+);
